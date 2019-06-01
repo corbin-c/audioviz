@@ -1,0 +1,20 @@
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+svg
+{
+	height: 90vh;
+	width: 90vh;
+	border: 1px dotted grey;
+	padding: 15px;
+	margin-top: 5vh;
+	margin-left: calc(50vw - 45vh);
+	background-color: #fff;
+}
+body
+{
+	background-color: #cdd;
+}
