@@ -112,7 +112,7 @@ function get_input()
 }
 document.getElementById("out_monitor").addEventListener("change",async function (e)
 {
-	if (e.target.checked)
+	if (e.target.checked && wa.type != "audio_in")
 	{
 		wa.analyserNode.connect(wa.audioCtx.destination);
 	}
