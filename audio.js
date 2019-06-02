@@ -37,11 +37,11 @@ document.getElementById("source_audio").addEventListener("change",async function
 		wa.type = "osc";
 		wa.audioSourceNode = wa.audioCtx.createOscillator();
 		wa.audioSourceNode.type = 'sine';
-		wa.audioSourceNode.frequency.setValueAtTime(4400, wa.audioCtx.currentTime);
+		wa.audioSourceNode.frequency.setValueAtTime(16, wa.audioCtx.currentTime);
 		wa.audioSourceNode.start();
 	}
 	wa.analyserNode = wa.audioCtx.createAnalyser();
-	wa.analyserNode.fftSize = 2048;
+	wa.analyserNode.fftSize = 1024;
 	svg.init_graph(wa.analyserNode.fftSize)
 	const bufferLength = wa.analyserNode.fftSize;
 	const dataArray = new Uint8Array(bufferLength);
