@@ -7,6 +7,7 @@ function WebAudio()
 	this.analyserNode = {};
 }
 wa = new WebAudio();
+document.getElementById("buff_size").value = 512;
 document.getElementById("source_audio").addEventListener("change",async function (e) {
 	try
 	{
@@ -60,10 +61,10 @@ document.getElementById("source_audio").addEventListener("change",async function
 		document.getElementById("file_input").classList.add("hidden")
 	}
 	wa.analyserNode = wa.audioCtx.createAnalyser();
-	wa.analyserNode.fftSize = 1024;
+	wa.analyserNode.fftSize = document.getElementById("buff_size").value;
 	svg.init_graph(wa.analyserNode.fftSize)
-	const bufferLength = wa.analyserNode.fftSize;
-	const dataArray = new Uint8Array(bufferLength);
+	wa.bufferLength = wa.analyserNode.fftSize;
+	wa.dataArray = new Uint8Array(wa.bufferLength);
 
 	wa.audioSourceNode.connect(wa.analyserNode);
 	if (document.getElementById("out_monitor").checked && wa.type != "audio_in")
@@ -74,13 +75,15 @@ document.getElementById("source_audio").addEventListener("change",async function
 	{
 		document.getElementById("out_monitor").checked = false;
 	}
-
-	draw();
-	async function draw() {
-		wa.analyserNode.getByteTimeDomainData(dataArray);
-		svg.fourier(dataArray)
-		await incr_wait(0,(wa.analyserNode.fftSize/wa.audioCtx.sampleRate)*1000)
+	if (!svg.drawing("status"))
+	{
 		draw();
+		async function draw() {
+			wa.analyserNode.getByteTimeDomainData(wa.dataArray);
+			svg.fourier(wa.dataArray)
+			await incr_wait(0,(wa.analyserNode.fftSize/wa.audioCtx.sampleRate)*1000)
+			draw();
+		}
 	}
 })
 
@@ -99,6 +102,31 @@ document.getElementById("osc_freq").addEventListener("change",function (e)
 document.getElementById("osc_type").addEventListener("change",function (e)
 {
 	wa.audioSourceNode.type = e.target.value;
+})
+document.getElementById("pt_size").addEventListener("change",function (e)
+{
+	svg.init_graph(wa.analyserNode.fftSize)
+})
+document.getElementById("buff_size").addEventListener("change",function (e)
+{
+	bufsize = (wa.analyserNode.fftSize || 512);
+	if (e.target.value != bufsize)
+	{
+		bufsize = pow_two(bufsize);
+		bufsize = (wa.analyserNode.fftSize > e.target.value) ? Math.pow(2,bufsize-1):Math.pow(2,bufsize+1);
+		try
+		{
+			svg.init_graph(bufsize)
+			e.target.value = bufsize;
+			wa.analyserNode.fftSize = bufsize;
+			wa.bufferLength = wa.analyserNode.fftSize;
+			wa.dataArray = new Uint8Array(wa.bufferLength);
+		}
+		catch
+		{
+			console.log("buffersize failure");
+		}
+	}
 })
 function get_input()
 {
@@ -130,6 +158,15 @@ function read(what)
 		});
 		reader.readAsDataURL(what);
 	})
+}
+function pow_two(number)
+{
+	var i = 1;
+	while (Math.pow(2,i)<number)
+	{
+		i++;
+	}
+	return i;
 }
 //Create audio source
 /*

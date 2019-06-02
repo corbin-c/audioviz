@@ -6,6 +6,7 @@ function Svg(min_x,min_y,max_x,max_y)
 	this.max_y = max_y;
 	this.delta_x = max_x-min_x;
 	this.delta_y = max_y-min_y;
+	this.drawing_status = false;
 	this.id = "svg"+new Date().valueOf();
 	this.svg = document.createElementNS(svgns, "svg");
 	this.svg.setAttribute("style","transform: scale(1,-1);")
@@ -13,7 +14,18 @@ function Svg(min_x,min_y,max_x,max_y)
 	this.svg.setAttribute("xmlns", svgns)	
 	this.svg.setAttribute('xmlns:xlink', "http://www.w3.org/1999/xlink")
 	this.svg.setAttributeNS(null, 'viewBox', min_x+" "+min_y+" "+this.delta_x+" "+this.delta_y);
-	document.querySelector("body").append(this.svg);
+	document.querySelector("section").append(this.svg);
+}
+Svg.prototype.drawing = function(str)
+{
+	if (str == "status")
+	{
+		return this.drawing_status
+	}
+	else
+	{
+		this.drawing_status = true;
+	}
 }
 Svg.prototype.axis = function(step)
 {
@@ -83,39 +95,39 @@ Svg.prototype.fourier = async function(data,time)
 {
 	for (x in data)
 	{
-		
-		
-		var com_x = Math.PI*2*(x/document.getElementById("main_group").children.length);
+		var com_x = parseInt(document.getElementById("circ").value)*Math.PI*2*(x/document.getElementById("main_group").children.length);
 		var com_y = data[x];
-	//	com_x = (2*Math.PI*com_x);
 		com_y = data[x]*Math.sin(com_x)*1.8;
 		com_x = data[x]*Math.cos(com_x)*1.8;
 		point = document.getElementById("p_"+x)
 		point.setAttributeNS(null,"cx",com_x);
 		point.setAttributeNS(null,"cy",com_y);
-		//this.svg.append(point)
-	//	await incr_wait(0,0)
 	}
 }
 Svg.prototype.init_graph = function(items)
 {
-	if (document.getElementById("main_group") == null)
+	if (document.getElementById("main_group") != null)
+	{
+		group = document.getElementById("main_group")
+		group.innerHTML = "";
+	}
+	else
 	{
 		group = document.createElementNS(svgns, "g");
 		group.setAttributeNS(null,"id","main_group");
 		this.svg.append(group)
-		var i = 0;
-		for (i=0;i<items;i++)
-		{
-			point = document.createElementNS(svgns, "circle");
-			point.setAttributeNS(null,"id","p_"+i);
-			point.setAttributeNS(null,"cx",0);
-			point.setAttributeNS(null,"cy",0);
-			point.setAttributeNS(null,"r",3);
-			point.setAttributeNS(null,"fill","#d17");
-			point.setAttributeNS(null,"stroke","white");
-			group.append(point)
-		}
+	}
+	var i = 0;
+	for (i=0;i<items;i++)
+	{
+		point = document.createElementNS(svgns, "circle");
+		point.setAttributeNS(null,"id","p_"+i);
+		point.setAttributeNS(null,"cx",0);
+		point.setAttributeNS(null,"cy",0);
+		point.setAttributeNS(null,"r",document.getElementById("pt_size").value);
+		point.setAttributeNS(null,"fill","#d17");
+		point.setAttributeNS(null,"stroke","white");
+		group.append(point)
 	}
 }
 Svg.prototype.osc = async function(data,time)
