@@ -9,7 +9,16 @@
 	</head>
 	<body>
 		<header><h1></h1></header>
+			<form id="mainform">
+				<label for="source_audio">Audio source:</label>
+				<select id="source_audio">
+					<option value="osc">Oscillator (sine)</option>
+					<option value="audio_in">Audio input (mic)</option>
+					<option value="file">File import</option>
+				</select>
+			</form>
 		<script src="main.js"></script>
+		<script src="graph.js"></script>
 		<script src="audio.js"></script>
 		<footer class=""></footer>
 	</body>
