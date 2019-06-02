@@ -12,17 +12,22 @@
 			<form id="mainform">
 				<label for="source_audio">Audio source:</label>
 				<select id="source_audio">
-					<option value="" selected>-- PLEASE CHOOSE SOURCE BELOW --</option>
-					<option value="osc">Oscillator (sine)</option>
+					<option value="osc">Oscillator</option>
 					<option value="audio_in">Audio input (mic)</option>
 					<option value="file">File import</option>
 				</select>
-			</form>
-			<form id="osc_settings" class="hidden">
-			</form>
-			<form id="audio_in_settings" class="hidden">
-			</form>
-			<form id="file_settings" class="hidden">
+				<label for="out_monitor">Monitor output:</label>
+					<input type="checkbox" id="out_monitor">
+				<label for="osc_freq" class="hidden" id="l_osc_freq">Frequency (Hz):</label>
+					<input type="number" id="osc_freq" name="osc_freq" class="hidden" value="440">
+				<label for="osc_type" class="hidden" id="l_osc_type">Waveform:</label>
+				<select id="osc_type" class="hidden">
+					<option value="sine">Sine</option>
+					<option value="square">Square</option>
+					<option value="sawtooth">Sawtooth</option>
+				</select>
+				<label for="file_input" class="hidden" id="l_file_input">Play File:</label>
+					<input type="file" id="file_input" class="hidden">
 			</form>
 		<script src="main.js"></script>
 		<script src="graph.js"></script>
