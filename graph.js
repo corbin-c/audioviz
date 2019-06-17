@@ -1,3 +1,4 @@
+var svgns = 'http://www.w3.org/2000/svg';
 function Svg(min_x,min_y,max_x,max_y)
 {
 	this.min_x = min_x;
