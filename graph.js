@@ -63,7 +63,7 @@ Svg.prototype.axis = function(step) {
     vstep.setAttributeNS(null,"stroke","black");
     this.svg.append(vstep)
   }
-  let i = this.min_y;
+  i = this.min_y;
   for (i=this.min_y;i<this.max_y;i=i+step) {
     vstep = document.createElementNS(svgns, "line");
     vstep.setAttributeNS(null,"x2",(-this.delta_x/200));
