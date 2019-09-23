@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title></title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="../style.css" />
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<header><h1>AudioViz</h1><script src="../menu.js" id="menujs"></script></header>
-		<section>
-			<form id="mainform">
-				<label for="source_audio">Audio source:</label>
-				<select id="source_audio">
-					<option value="osc">Oscillator</option>
-					<option value="audio_in">Audio input (mic)</option>
-					<option value="file">File import</option>
-				</select>
-				<label for="out_monitor">Monitor output:</label>
-					<input type="checkbox" id="out_monitor">
-				<label for="osc_freq" class="hidden" id="l_osc_freq">Frequency (Hz):</label>
-					<input type="number" id="osc_freq" name="osc_freq" class="hidden" value="440">
-				<label for="osc_type" class="hidden" id="l_osc_type">Waveform:</label>
-				<select id="osc_type" class="hidden">
-					<option value="sine">Sine</option>
-					<option value="square">Square</option>
-					<option value="sawtooth">Sawtooth</option>
-				</select>
-				<label for="file_input" class="hidden" id="l_file_input">Select file:</label>
-					<input type="file" id="file_input" class="hidden">
-				<label for="buff_size" id="l_buff_size">Buffer size:</label>
-					<input type="number" id="buff_size" name="buff_size" value="512">
-				<label for="pt_size" id="l_pt_size">Point size:</label>
-					<input type="number" id="pt_size" name="pt_size" value="2">
-				<label for="const_level" id="l_const_level">Consistency level:</label>
-					<input type="number" id="const_level" name="const_level" value="1">
-				<label for="circ" id="l_circ">Timespan:</label>
-					<input type="number" id="circ" name="circ" value="1">
-			</form>
-		<script src="graph.js"></script>
-		<script src="audio.js"></script>
-		</section>
-		<footer><a href="https://github.com/corbin-c/audioviz" title="project audioviz by corbin-c on Github">View code on Github</a></footer>
-	</body>
+  <head>
+    <title>AudioViz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header><h1>AudioViz</h1><script src="../menu.js" id="menujs"></script></header>
+    <main>
+      <form id="mainform">
+        <label for="source_audio">Audio source:</label>
+        <select id="source_audio">
+          <option value="osc">Oscillator</option>
+          <option value="audio_in">Audio input (mic)</option>
+          <option value="file">File import</option>
+        </select>
+        <label for="out_monitor">Monitor output:</label>
+          <input type="checkbox" id="out_monitor">
+        <label for="osc_freq" class="hidden" id="l_osc_freq">Frequency (Hz):</label>
+          <input type="number" id="osc_freq" name="osc_freq" class="hidden" value="440">
+        <label for="osc_type" class="hidden" id="l_osc_type">Waveform:</label>
+        <select id="osc_type" class="hidden">
+          <option value="sine">Sine</option>
+          <option value="square">Square</option>
+          <option value="sawtooth">Sawtooth</option>
+        </select>
+        <label for="file_input" class="hidden" id="l_file_input">Select file:</label>
+          <input type="file" id="file_input" class="hidden">
+        <label for="buff_size" id="l_buff_size">Buffer size:</label>
+          <input type="number" id="buff_size" name="buff_size" value="512">
+        <label for="pt_size" id="l_pt_size">Point size:</label>
+          <input type="number" id="pt_size" name="pt_size" value="2">
+        <!--<label for="const_level" id="l_const_level">Consistency level:</label>
+          <input type="number" id="const_level" name="const_level" value="1">-->
+        <label for="circ" id="l_circ">Timespan:</label>
+          <input type="number" id="circ" name="circ" value="1">
+      </form>
+    <script src="graph.js"></script>
+    <script src="audio.js"></script>
+    </main>
+    <footer><a href="https://github.com/corbin-c/audioviz" title="project audioviz by corbin-c on Github">View code on Github</a></footer>
+  </body>
 </html>

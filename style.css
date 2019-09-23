@@ -1,53 +1,44 @@
-*
-{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-#mainform
-{
-	width: 100%;
-	border: 1px dotted black;
-	padding: 5px;
-	margin-bottom: 2vh;
+#mainform {
+  width: 100%;
+  border: 1px dotted black;
+  padding: 5px;
+  margin-bottom: 2vh;
 }
-svg
-{
-	background-color: #000;
-	height: 94vw;
-	width: 94vw;
+svg {
+  background-color: #000;
+  height: 94vw;
+  width: 94vw;
 }
-section
-{
-	display: flex;
-	flex-wrap:wrap;
-	justify-content: space-around;
-	align-content: space-between;
+main {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
+  align-content: space-between;
 }
 @media only screen and (min-width: 900px) {
-		svg
-		{
-			height: 70vh;
-			width: 70vh;
-		}
-		#mainform
-		{
-			width: calc(100vw - 90vh);
-		}
+    svg {
+      height: 70vh;
+      width: 70vh;
+    }
+    #mainform {
+      width: calc(100vw - 90vh);
+    }
 }
-#mainform input, select
-{
-	width: calc(100% - 10px);
-	display: block;
-	padding: 5px;
-	margin: 5px;
+#mainform input, select {
+  width: calc(100% - 10px);
+  display: block;
+  padding: 5px;
+  margin: 5px;
 }
-#mainform button
-{
-	padding: 5px;
-	margin: 5px;
+#mainform button {
+  padding: 5px;
+  margin: 5px;
 }
-.hidden
-{
-	display:none !important;
+.hidden {
+  display:none !important;
 }
